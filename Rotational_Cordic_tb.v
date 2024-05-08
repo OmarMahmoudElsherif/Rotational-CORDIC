@@ -12,7 +12,6 @@ reg  [WORD_LENGTH-1:0] Yo_tb          ;
 reg  [WORD_LENGTH-1:0] Zo_tb          ;
 wire [WORD_LENGTH-1:0] XN_tb          ;
 wire [WORD_LENGTH-1:0] YN_tb          ;
-wire [WORD_LENGTH-1:0] ZN_tb          ;
 wire                   done_signal_tb ;
 
 
@@ -28,7 +27,6 @@ Rotational_Cordic My_Rotational_Cordic (
 	.Zo(Zo_tb),
 	.XN(XN_tb),
 	.YN(YN_tb),
-	.ZN(ZN_tb),
 	.Done(done_signal_tb)
 	);
 
@@ -111,6 +109,84 @@ initial begin
      ENABLE_tb=1'b0;
      
 	 @(done_signal_tb);
+
+	 // 6th Trial
+	 @(posedge CLK_tb)
+     ENABLE_tb=1'b1; 
+    Xo_tb=18'b000001000100110011; // 2.15
+	Yo_tb=18'b000000101001100110; // 1.3
+	Zo_tb='h01855;// pi-0.1rad
+	@(posedge CLK_tb)
+     ENABLE_tb=1'b0;
+     
+	 @(done_signal_tb);
+
+	 // 7th Trial
+	 @(posedge CLK_tb)
+     ENABLE_tb=1'b1; 
+    Xo_tb=18'b000001000100110011; // 2.15
+	Yo_tb=18'b000000101001100110; // 1.3
+	Zo_tb='h019ee;// pi+0.1rad
+	@(posedge CLK_tb)
+     ENABLE_tb=1'b0;
+     
+	 @(done_signal_tb);
+
+	  // 8th Trial
+	 @(posedge CLK_tb)
+     ENABLE_tb=1'b1; 
+    Xo_tb=18'b000001000100110011; // 2.15
+	Yo_tb=18'b000000101001100110; // 1.3
+	Zo_tb='h03243;// 2*pi
+	@(posedge CLK_tb)
+     ENABLE_tb=1'b0;
+     
+	 @(done_signal_tb);
+
+	  // 9th Trial
+	 @(posedge CLK_tb)
+     ENABLE_tb=1'b1; 
+    Xo_tb=18'b000001000100110011; // 2.15
+	Yo_tb=18'b000000101001100110; // 1.3
+	Zo_tb='h033dd;// 2*pi+0.2
+	@(posedge CLK_tb)
+     ENABLE_tb=1'b0;
+     
+	 @(done_signal_tb);
+
+ 	// 10th Trial
+	 @(posedge CLK_tb)
+     ENABLE_tb=1'b1; 
+    Xo_tb=18'b000001000100110011; // 2.15
+	Yo_tb=18'b000000101001100110; // 1.3
+	Zo_tb='h025b2;// 3*pi/2
+	@(posedge CLK_tb)
+     ENABLE_tb=1'b0;
+     
+	 @(done_signal_tb);
+
+	 // 11th Trial
+	 @(posedge CLK_tb)
+     ENABLE_tb=1'b1; 
+    Xo_tb=18'b000001000100110011; // 2.15
+	Yo_tb=18'b000000101001100110; // 1.3
+	Zo_tb='h0267f;// 3*pi/2+0.1
+	@(posedge CLK_tb)
+     ENABLE_tb=1'b0;
+     
+	 @(done_signal_tb);
+
+	 // 12th Trial
+	 @(posedge CLK_tb)
+     ENABLE_tb=1'b1; 
+    Xo_tb=18'b000001000100110011; // 2.15
+	Yo_tb=18'b000000101001100110; // 1.3
+	Zo_tb='h3d980;// -3*pi/2-0.1
+	@(posedge CLK_tb)
+     ENABLE_tb=1'b0;
+     
+	 @(done_signal_tb);
+
 
 	 #50;
 	 $stop;
